@@ -1,0 +1,23 @@
+{
+  "name": "atom-laravel-snippets",
+  "version": "0.1",
+  "description": "Laravel 5 snippets for Atom.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michael-lurquin/atom-laravel-snippets"
+  },
+  "keywords": [
+    "atom",
+    "laravel",
+    "snippets"
+  ],
+  "author": "Michael Lurquin",
+  "license": "MIT",
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  },
+  "bugs": {
+    "url": "https://github.com/michael-lurquin/atom-laravel-snippets/issues"
+  },
+  "homepage": "https://github.com/michael-lurquin/atom-laravel-snippets/blob/master/README.md"
+}

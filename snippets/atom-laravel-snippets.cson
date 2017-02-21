@@ -1,0 +1,169 @@
+'.source.php':
+  'hasOne':
+    'prefix': 'ho'
+    'description': 'Eloquent One To One',
+    'descriptionMoreURL': 'https://laravel.com/docs/master/eloquent-relationships#one-to-one'
+    'body': """
+    /**
+     * Get the ${1:model} record associated with the ${2:model}.
+     */
+    public function ${1:model}()
+    {
+        return $this->hasOne(${1:Name}::class);
+    }
+    """
+
+  'hasMany':
+    'prefix': 'hm'
+    'description': 'Eloquent One To Many',
+    'descriptionMoreURL': 'https://laravel.com/docs/master/eloquent-relationships#one-to-many'
+    'body': """
+    /**
+     * Get the ${1:models} for the ${2:model}.
+     */
+    public function ${1:models}()
+    {
+        return $this->hasMany(${1:Name}::class);
+    }
+    """
+
+  'belongsTo':
+    'prefix': 'bt'
+    'description': 'Eloquent Belongs To',
+    'descriptionMoreURL': 'https://laravel.com/docs/master/eloquent-relationships#one-to-one'
+    'body': """
+    /**
+     * Get the ${1:model} that owns the ${2:model}.
+     */
+    public function ${1:model}()
+    {
+        return $this->belongsTo(${1:Name}::class);
+    }
+    """
+
+  'belongsToMany':
+    'prefix': 'btm'
+    'description': 'Eloquent Belongs To Many',
+    'descriptionMoreURL': 'https://laravel.com/docs/master/eloquent-relationships#many-to-many'
+    'body': """
+    /**
+     * The ${1:models} that belong to the ${2:model}.
+     */
+    public function ${1:models}()
+    {
+        return $this->belongsToMany(${1:Name}::class);
+    }
+    """
+
+  'hasManyThrough':
+    'prefix': 'hmt'
+    'description': 'Eloquent Has Many Through',
+    'descriptionMoreURL': 'https://laravel.com/docs/master/eloquent-relationships#has-many-through'
+    'body': """
+    /**
+     * Get all of the ${1:models} for the ${2:model}.
+     */
+    public function ${1:models}()
+    {
+        return $this->hasManyThrough(${1:Name}::class, $2::class);
+    }
+    """
+
+  'morphTo':
+    'prefix': 'mt'
+    'description': 'Eloquent Morph To',
+    'descriptionMoreURL': 'https://laravel.com/docs/master/eloquent-relationships#polymorphic-relations'
+    'body': """
+    /**
+     * Get all of the owning ${1:model} models.
+     */
+    public function ${1:model}()
+    {
+        return $this->morphTo();
+    }
+    """
+
+  'morphMany':
+    'prefix': 'mm'
+    'description': 'Eloquent Morph Many',
+    'descriptionMoreURL': 'https://laravel.com/docs/master/eloquent-relationships#polymorphic-relations'
+    'body': """
+    /**
+     * Get all of the ${1:model}'s ${2:model}s.
+     */
+    public function ${1:models}()
+    {
+        return $this->morphMany(${1:Name}::class, ${2:Name}::class);
+    }
+    """
+
+  'morphToMany':
+    'prefix': 'hmt'
+    'description': 'Eloquent Morph To Many',
+    'descriptionMoreURL': 'https://laravel.com/docs/master/eloquent-relationships#many-to-many-polymorphic-relations'
+    'body': """
+    /**
+     * Get all of the ${1:models} for the ${2:model}.
+     */
+    public function ${1:models}()
+    {
+        return $this->morphToMany(${1:Name}::class, 'taggable');
+    }
+    """
+
+  'morphedByMany':
+    'prefix': 'hmt'
+    'description': 'Eloquent Morph To Many',
+    'descriptionMoreURL': 'https://laravel.com/docs/master/eloquent-relationships#many-to-many-polymorphic-relations'
+    'body': """
+    /**
+     * Get all of the ${1:models} that are assigned this ${2:model}.
+     */
+    public function ${1:models}()
+    {
+        return $this->morphedByMany(${1:Name}::class, 'taggable');
+    }
+    """
+
+
+  'Accessor':
+    'prefix': 'getA'
+    'description': 'Accessor'
+    'descriptionMoreURL': 'https://laravel.com/docs/master/eloquent-mutators#accessors-and-mutators'
+    'body': """
+    /**
+     * Get the ${2:description}'s.
+     */
+    public function get${1:Name}Attribute($value)
+    {
+        return ucfirst($value);
+    }
+    """
+
+  'Mutator':
+    'prefix': 'setA'
+    'description': 'Mutator'
+    'descriptionMoreURL': 'https://laravel.com/docs/master/eloquent-mutators#accessors-and-mutators'
+    'body': """
+    /**
+     * Set the ${2:description}'s.
+     */
+    public function set${1:Name}Attribute($value)
+    {
+        $this->attributes['$1'] = strtolower($value);
+    }
+    """
+
+  'Scope':
+    'prefix': 'scope'
+    'description': 'Local scope'
+    'descriptionMoreURL': 'https://laravel.com/docs/master/eloquent#local-scopes'
+    'body': """
+    /**
+     * Scope a query to only include ${5:description}.
+     */
+    public function scope${1:Name}($query)
+    {
+        return $$query->where('${2:column}', '${3:symbol}', '${4:value}');
+    }
+    """
