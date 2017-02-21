@@ -1,6 +1,6 @@
 {
   "name": "atom-laravel-snippets",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Laravel 5 snippets for Atom.",
   "repository": {
     "type": "git",
