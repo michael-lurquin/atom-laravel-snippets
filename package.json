@@ -8,7 +8,7 @@
   "dependencies": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/michael-lurquin/atom-laravel-snippets.git"
+    "url": "https://github.com/michael-lurquin/atom-laravel-snippets.git"
   },
   "bugs": {
     "url": "https://github.com/michael-lurquin/atom-laravel-snippets/issues"
