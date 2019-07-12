@@ -1,6 +1,6 @@
 {
   "name": "atom-laravel-snippets",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "Laravel 5 snippets for Atom.",
   "engines": {
     "atom": "*"
