@@ -17,8 +17,10 @@ Or Settings/Preferences ➔ Install ➔ Search for `atom-laravel-snippets`. You 
 * **hm**: hasMany
 * **bt**: belongsTo
 * **btm**: belongsToMany
+* **hot**: hasOneThrough
 * **hmt**: hasManyThrough
 * **mt**: morphTo
+* **mo**: morphOne
 * **mm**: morphMany
 * **mtm**: morphToMany
 * **mbm**: morphedByMany
@@ -31,3 +33,4 @@ Or Settings/Preferences ➔ Install ➔ Search for `atom-laravel-snippets`. You 
 ### Eloquent : Query Scopes
 
 * **scope**: Local scope
+* **scopeDyn**: Dynamic scope

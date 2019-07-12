@@ -9,7 +9,7 @@
      */
     public function ${1:model}()
     {
-        return $this->hasOne(${1:Name}::class);
+        return $this->hasOne(${1/(.+)/\\u$1/}$3::class);
     }
     """
 
@@ -19,11 +19,11 @@
     'descriptionMoreURL': 'https://laravel.com/docs/master/eloquent-relationships#one-to-many'
     'body': """
     /**
-     * Get the ${1:models} for the ${2:model}.
+     * Get the ${1:model}s for the ${2:model}.
      */
-    public function ${1:models}()
+    public function ${1:model}s()
     {
-        return $this->hasMany(${1:Name}::class);
+        return $this->hasMany(${1/(.+)/\\u$1/}$3::class);
     }
     """
 
@@ -37,7 +37,7 @@
      */
     public function ${1:model}()
     {
-        return $this->belongsTo(${1:Name}::class);
+        return $this->belongsTo(${1/(.+)/\\u$1/}$3::class);
     }
     """
 
@@ -47,11 +47,25 @@
     'descriptionMoreURL': 'https://laravel.com/docs/master/eloquent-relationships#many-to-many'
     'body': """
     /**
-     * The ${1:models} that belong to the ${2:model}.
+     * The ${1:model}s that belong to the ${2:model}.
      */
-    public function ${1:models}()
+    public function ${1:model}s()
     {
-        return $this->belongsToMany(${1:Name}::class);
+        return $this->belongsToMany(${1/(.+)/\\u$1/}$3::class);
+    }
+    """
+
+  'hasOneThrough':
+    'prefix': 'hot'
+    'description': 'Eloquent Has One Through',
+    'descriptionMoreURL': 'https://laravel.com/docs/master/eloquent-relationships#has-one-through'
+    'body': """
+    /**
+     * Get all of the ${1:model} for the ${2:model}.
+     */
+    public function ${1:model}()
+    {
+        return $this->hasOneThrough(${1/(.+)/\\u$1/}$3::class, ${2/(.+)/\\u$1/}$4::class);
     }
     """
 
@@ -61,11 +75,11 @@
     'descriptionMoreURL': 'https://laravel.com/docs/master/eloquent-relationships#has-many-through'
     'body': """
     /**
-     * Get all of the ${1:models} for the ${2:model}.
+     * Get all of the ${1:model}s for the ${2:model}.
      */
-    public function ${1:models}()
+    public function ${1:model}s()
     {
-        return $this->hasManyThrough(${1:Name}::class, $2::class);
+        return $this->hasManyThrough(${1/(.+)/\\u$1/}$3::class, ${2/(.+)/\\u$1/}$4::class);
     }
     """
 
@@ -83,48 +97,61 @@
     }
     """
 
+  'morphOne':
+    'prefix': 'mo'
+    'description': 'Eloquent Morph One',
+    'descriptionMoreURL': 'https://laravel.com/docs/master/eloquent-relationships#one-to-one-polymorphic-relations'
+    'body': """
+    /**
+     * Get all of the ${1:model}'s ${2:model}.
+     */
+    public function ${1:model}()
+    {
+        return $this->morphOne(${1/(.+)/\\u$1/}$3::class, '${2:model}$4');
+    }
+    """
+
   'morphMany':
     'prefix': 'mm'
     'description': 'Eloquent Morph Many',
-    'descriptionMoreURL': 'https://laravel.com/docs/master/eloquent-relationships#polymorphic-relations'
+    'descriptionMoreURL': 'https://laravel.com/docs/master/eloquent-relationships#one-to-many-polymorphic-relations'
     'body': """
     /**
      * Get all of the ${1:model}'s ${2:model}s.
      */
-    public function ${1:models}()
+    public function ${1:model}s()
     {
-        return $this->morphMany(${1:Name}::class, ${2:Name}::class);
+        return $this->morphMany(${1/(.+)/\\u$1/}$3::class, '${2:model}$4');
     }
     """
 
   'morphToMany':
-    'prefix': 'hmt'
+    'prefix': 'mtm'
     'description': 'Eloquent Morph To Many',
     'descriptionMoreURL': 'https://laravel.com/docs/master/eloquent-relationships#many-to-many-polymorphic-relations'
     'body': """
     /**
-     * Get all of the ${1:models} for the ${2:model}.
+     * Get all of the ${1:model}s for the ${2:model}.
      */
-    public function ${1:models}()
+    public function ${1:model}s()
     {
-        return $this->morphToMany(${1:Name}::class, 'taggable');
+        return $this->morphToMany(${1/(.+)/\\u$1/}$3::class, '${2:model}$4');
     }
     """
 
   'morphedByMany':
-    'prefix': 'hmt'
-    'description': 'Eloquent Morph To Many',
+    'prefix': 'mbm'
+    'description': 'Eloquent Morph By Many',
     'descriptionMoreURL': 'https://laravel.com/docs/master/eloquent-relationships#many-to-many-polymorphic-relations'
     'body': """
     /**
-     * Get all of the ${1:models} that are assigned this ${2:model}.
+     * Get all of the ${1:model}s that are assigned this ${2:model}.
      */
-    public function ${1:models}()
+    public function ${1:model}s()
     {
-        return $this->morphedByMany(${1:Name}::class, 'taggable');
+        return $this->morphedByMany(${1/(.+)/\\u$1/}$3::class, '${2:model}$4');
     }
     """
-
 
   'Accessor':
     'prefix': 'getA'
@@ -133,6 +160,9 @@
     'body': """
     /**
      * Get the ${2:description}'s.
+     *
+     * @param  string  $value
+     * @return string
      */
     public function get${1:Name}Attribute($value)
     {
@@ -147,10 +177,13 @@
     'body': """
     /**
      * Set the ${2:description}'s.
+     *
+     * @param  string  $value
+     * @return void
      */
     public function set${1:Name}Attribute($value)
     {
-        $this->attributes['$1'] = strtolower($value);
+        $this->attributes['${1/(.*)/\\l$1/}'] = $value$3;
     }
     """
 
@@ -161,9 +194,30 @@
     'body': """
     /**
      * Scope a query to only include ${5:description}.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scope${1:Name}($query)
     {
-        return $$query->where('${2:column}', '${3:symbol}', '${4:value}');
+        return $query->where('${2:column}', '${3:symbol}', '${4:value}');
+    }
+    """
+
+  'Dynamic Scope':
+    'prefix': 'scopeDyn'
+    'description': 'Dynamic scope'
+    'descriptionMoreURL': 'https://laravel.com/docs/master/eloquent#query-scopes'
+    'body': """
+    /**
+     * Scope a query to only include ${4:description} of a given ${2:param}.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param  mixed  $${2:param}
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scope${1:Name}($query, $${2:param})
+    {
+        return $query->where('${3:column}', $${2:param});
     }
     """
